@@ -1,3 +1,4 @@
+import { useRouter } from "next/router"
 import Layout from "../../components/Layout"
 import { GetServerSideProps } from "next"
 
@@ -13,6 +14,15 @@ type Prop = {
 }
 
 export default function CategoryPage({ categorysPostData }: Prop) {
+    const router = useRouter()
+
+    const handleDeleteCategory = async () => {
+        const res = await fetch(`http://localhost:3001/category/${router.query.id}`, {
+            method: 'DELETE',
+        })
+        router.push('/category')
+    }
+
     return (
 
         <Layout>
@@ -21,6 +31,7 @@ export default function CategoryPage({ categorysPostData }: Prop) {
                 <main>
                     {categorysPostData.map((post, index) => (
                         <div key={post.id} className="post">
+                            <button onClick={() => handleDeleteCategory()}>Delete</button>
                             <div>Title is : {post.title}</div>
                             <div>Content is : {post.content}</div>
                             <div>authorId is : {post.authorId}</div>

@@ -100,12 +100,49 @@ app.delete(`/post/:id`, async (req, res) => {
     return res.status(404).json({ message: 'post not found' })
   }
 
-  const post = await prisma.post.delete({
+  await prisma.catergoriesOnPosts.deleteMany({
+    where: {
+      postId: Number(id)
+    }
+  })
+
+  await prisma.post.delete({
     where: {
       id: Number(id),
     },
   })
-  res.json(post)
+
+  res.status(200).send("Post deleted successfully")
+})
+
+app.delete(`/category/:id`, async (req, res) => {
+
+  const { id } = req.params
+
+  const preCategory = await prisma.catergory.findUnique({
+    where: {
+      id: Number(id),
+    },
+  })
+
+  if (!preCategory) {
+    // #swagger.responses[404] = { description: 'category not found' }
+    return res.status(404).json({ message: 'category not found' })
+  }
+
+  await prisma.catergoriesOnPosts.deleteMany({
+    where: {
+      catergoryId: Number(id)
+    }
+  })
+
+  await prisma.catergory.delete({
+    where: {
+      id: Number(id),
+    },
+  })
+
+  res.status(200).send("Category deleted successfully")
 })
 
 app.get(`/post/:id`, async (req, res) => {
