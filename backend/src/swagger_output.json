@@ -1,0 +1,204 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:3001",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "post",
+      "description": "post router"
+    },
+    {
+      "name": "user",
+      "description": "使用者 router"
+    },
+    {
+      "name": "both",
+      "description": "mix router"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/drafts": {
+      "get": {
+        "tags": [
+          "post"
+        ],
+        "summary": "Get all drafts",
+        "description": "Some description...",
+        "operationId": "Your_operationId_here",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/feed": {
+      "get": {
+        "tags": [
+          "post"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/filterPosts": {
+      "get": {
+        "tags": [
+          "post"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "searchString",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/post": {
+      "post": {
+        "tags": [
+          "post"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Some description...",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "title here"
+                },
+                "content": {
+                  "type": "string",
+                  "example": "content here"
+                },
+                "authorEmail": {
+                  "type": "string",
+                  "example": "email here"
+                },
+                "catergoryId": {
+                  "type": "string",
+                  "example": "catid here"
+                }
+              },
+              "required": [
+                "title",
+                "content",
+                "authorEmail",
+                "catergoryId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/post/{id}": {
+      "delete": {
+        "tags": [
+          "post"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "post not found"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "post"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/publish/{id}": {
+      "put": {
+        "tags": [
+          "post"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
