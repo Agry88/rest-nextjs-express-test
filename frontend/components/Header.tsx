@@ -9,6 +9,7 @@ const Header: React.FC = () => {
 
   return (
     <nav>
+
       <div className="left">
         <Link legacyBehavior href="/">
           <a className="bold" data-active={isActive('/')}>
@@ -18,7 +19,14 @@ const Header: React.FC = () => {
         <Link legacyBehavior href="/drafts">
           <a data-active={isActive('/drafts')}>Drafts</a>
         </Link>
+        <Link legacyBehavior href="/user">
+          <a data-active={isActive('/user')}>User</a>
+        </Link>
+        <Link legacyBehavior href="/category">
+          <a data-active={isActive('/category')}>Category</a>
+        </Link>
       </div>
+
       <div className="right">
         <Link legacyBehavior href="/signup">
           <a data-active={isActive('/signup')}>Signup</a>
@@ -27,6 +35,7 @@ const Header: React.FC = () => {
           <a data-active={isActive('/create')}>+ Create draft</a>
         </Link>
       </div>
+
       <style jsx>{`
         nav {
           display: flex;

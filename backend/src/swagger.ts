@@ -18,6 +18,10 @@ const doc = {
             description: "使用者 router"
         },
         {
+            name: "category",
+            description: "category router"
+        },
+        {
             name: "both",
             description: "mix router"
         },

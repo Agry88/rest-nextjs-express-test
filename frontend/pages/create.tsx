@@ -6,11 +6,12 @@ const Draft: React.FC = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [authorEmail, setAuthorEmail] = useState('')
+  const [catergoryId, setCatergoryId] = useState('')
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     try {
-      const body = { title, content, authorEmail }
+      const body = { title, content, authorEmail, catergoryId }
       await fetch(`http://localhost:3001/post`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -41,6 +42,12 @@ const Draft: React.FC = () => {
             type="text"
             value={authorEmail}
           />
+          <input
+            onChange={e => setCatergoryId(e.target.value)}
+            placeholder="catergoryId"
+            type="text"
+            value={catergoryId}
+          />
           <textarea
             cols={50}
             onChange={e => setContent(e.target.value)}
@@ -49,7 +56,7 @@ const Draft: React.FC = () => {
             value={content}
           />
           <input
-            disabled={!content || !title || !authorEmail}
+            disabled={!content || !title || !authorEmail || !catergoryId}
             type="submit"
             value="Create"
           />

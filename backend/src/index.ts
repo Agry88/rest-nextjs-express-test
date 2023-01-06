@@ -75,7 +75,11 @@ app.post(`/post`, async (req, res) => {
       content,
       published: false,
       author: { connect: { email: authorEmail } },
-      category: { connect: catergoryId }
+      category: {
+        create: {
+          catergoryId: Number(catergoryId)
+        }
+      }
     },
   })
   res.json(result)
@@ -128,6 +132,18 @@ app.put('/publish/:id', async (req, res) => {
 
 app.post(`/user`, async (req, res) => {
   // #swagger.tags = ['user']
+
+  const { email } = req.body
+  const user = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  })
+
+  if (user) {
+    return res.status(400).json({ message: 'user already exists' })
+  }
+
   const result = await prisma.user.create({
     data: {
       ...req.body,
@@ -136,8 +152,77 @@ app.post(`/user`, async (req, res) => {
   res.json(result)
 })
 
+app.get(`/user`, async (req, res) => {
+  // #swagger.tags = ['user']
+  const result = await prisma.user.findMany()
+  return res.status(200).json(result)
+})
+
+app.get('/user/:id', async (req, res) => {
+  // #swagger.tags = ['user']
+  const { id } = req.params
+  const user = await prisma.user.findUnique({
+    where: {
+      id: Number(id),
+    },
+  })
+  res.json(user)
+})
+
+app.get(`/category`, async (req, res) => {
+  // #swagger.tags = ['category']
+  const result = await prisma.catergory.findMany()
+  return res.status(200).json(result)
+})
+
+app.get(`/category/:id`, async (req, res) => {
+  // #swagger.tags = ['category']
+  const { id } = req.params
+
+  const rawPost = await prisma.catergory.findUnique({
+    where: {
+      id: Number(id),
+    },
+    select: {
+      posts: {
+        select: {
+          Post: {
+            select: {
+              id: true,
+              title: true,
+              content: true,
+              authorId: true
+            }
+          }
+        }
+      },
+    }
+  })
+
+  if (!rawPost) return res.status(404).json({ message: 'category not found' })
+
+  const posts = rawPost.posts.map((post) => post.Post)
+
+  return res.json(posts)
+})
+
 const server = app.listen(3001, () =>
   console.log(
     '🚀 Server ready at: http://localhost:3001',
   ),
 )
+
+
+// type rawPost = {
+//   id: number
+//   name: string
+//   posts: {
+//     Post: Post[]
+//   }[]
+// }
+
+// type Post = {
+//   id: number
+//   title: string
+//   content: string
+// }
