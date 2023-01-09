@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "start": "ts-node src/index.ts",
+    "dev": "nodemon app.ts",
+    "start": "ts-node app.ts",
     "seed": "ts-node prisma/seed.ts",
-    "predev": "ts-node src/swagger.ts"
+    "swagger-autogen": "ts-node swagger.ts"
   },
   "dependencies": {
     "@prisma/client": "4.8.0",
     "@types/node": "18.11.18",
     "cors": "2.8.5",
+    "dotenv": "^16.0.3",
     "express": "4.18.2",
     "swagger-autogen": "^2.22.0",
     "swagger-ui-express": "^4.6.0"

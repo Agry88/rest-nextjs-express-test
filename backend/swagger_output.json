@@ -6,7 +6,7 @@
     "description": ""
   },
   "host": "localhost:3001",
-  "basePath": "/",
+  "basePath": "/api",
   "tags": [
     {
       "name": "post",
@@ -14,22 +14,145 @@
     },
     {
       "name": "user",
-      "description": "使用者 router"
+      "description": "user router"
     },
     {
       "name": "category",
       "description": "category router"
     },
     {
-      "name": "both",
-      "description": "mix router"
+      "name": "test",
+      "description": "test router"
     }
   ],
   "schemes": [
     "http"
   ],
   "paths": {
-    "/drafts": {
+    "/category/category/{id}": {
+      "delete": {
+        "tags": [
+          "category"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "category not found"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "category"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/category/category": {
+      "get": {
+        "tags": [
+          "category"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/user": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/user/{id}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/post/drafts": {
       "get": {
         "tags": [
           "post"
@@ -45,7 +168,7 @@
         }
       }
     },
-    "/feed": {
+    "/post/feed": {
       "get": {
         "tags": [
           "post"
@@ -59,7 +182,7 @@
         }
       }
     },
-    "/filterPosts": {
+    "/post/filterPosts": {
       "get": {
         "tags": [
           "post"
@@ -79,7 +202,7 @@
         }
       }
     },
-    "/post": {
+    "/post/post": {
       "post": {
         "tags": [
           "post"
@@ -126,7 +249,7 @@
         }
       }
     },
-    "/post/{id}": {
+    "/post/post/{id}": {
       "delete": {
         "tags": [
           "post"
@@ -169,92 +292,10 @@
         }
       }
     },
-    "/publish/{id}": {
+    "/post/publish/{id}": {
       "put": {
         "tags": [
           "post"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/user": {
-      "post": {
-        "tags": [
-          "user"
-        ],
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "user"
-        ],
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/user/{id}": {
-      "get": {
-        "tags": [
-          "user"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/category": {
-      "get": {
-        "tags": [
-          "category"
-        ],
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/category/{id}": {
-      "get": {
-        "tags": [
-          "category"
         ],
         "description": "",
         "parameters": [
