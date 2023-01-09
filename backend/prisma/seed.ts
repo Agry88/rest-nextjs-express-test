@@ -21,9 +21,9 @@ const userData: Prisma.UserCreateInput[] = [
               }
             }
           }
-        },
-      ],
-    },
+        }
+      ]
+    }
   },
   {
     name: 'Nilu',
@@ -43,9 +43,9 @@ const userData: Prisma.UserCreateInput[] = [
               }
             }
           }
-        },
-      ],
-    },
+        }
+      ]
+    }
   },
   {
     name: 'Mahmoud',
@@ -78,23 +78,23 @@ const userData: Prisma.UserCreateInput[] = [
               }
             }
           }
-        },
-      ],
-    },
-  },
+        }
+      ]
+    }
+  }
 ]
 
-async function main() {
-  console.log(`Start seeding ...`)
+async function main(): Promise<void> {
+  console.log('Start seeding ...')
   await prisma.post.deleteMany()
   await prisma.user.deleteMany()
   for (const u of userData) {
     const user = await prisma.user.create({
-      data: u,
+      data: u
     })
     console.log(`Created user with id: ${user.id}`)
   }
-  console.log(`Seeding finished.`)
+  console.log('Seeding finished.')
 }
 
 main()
