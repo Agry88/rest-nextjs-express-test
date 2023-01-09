@@ -6,7 +6,7 @@ export type Config = {
 }
 
 const config: Config = {
-  port: Number(process.env.PORT) ?? 3001
+  port: process.env.PORT === undefined ? 3001 : Number(process.env.PORT)
 }
 
 export default config

@@ -84,7 +84,7 @@ const userData: Prisma.UserCreateInput[] = [
   }
 ]
 
-async function main(): Promise<void> {
+async function main (): Promise<void> {
   console.log('Start seeding ...')
   await prisma.post.deleteMany()
   await prisma.user.deleteMany()
