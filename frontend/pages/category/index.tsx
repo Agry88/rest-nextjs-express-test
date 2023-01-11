@@ -1,40 +1,35 @@
-import Layout from "../../components/Layout"
-import { GetServerSideProps } from "next"
-import Router from 'next/router'
-import User from "../../components/User"
+import React from 'react';
+import { GetServerSideProps } from 'next';
+import Link from 'next/link';
+import Layout from '../../components/Layout';
 
-type category = {
-    id: number,
-    name: string,
-}
+type Category = {
+  id: number,
+  name: string,
+};
 
 type Prop = {
-    categories: category[]
-}
+  categories: Category[]
+};
 
 export default function CategoryPage({ categories }: Prop) {
+  return (
 
-    return (
-
-        <Layout>
-            <div className="page">
-                <h1>Category List</h1>
-                <main>
-                    {categories?.map((cate, index) => (
-                        <div key={cate.id} className="post">
-                            <div className="content"
-                                onClick={() => {
-                                    Router.push(`/category/${cate.id}`)
-                                }}
-                            >
-                                {cate.name}
-                            </div>
-                            {/* <User user={cate} /> */}
-                        </div>
-                    ))}
-                </main>
+    <Layout>
+      <div className="page">
+        <h1>Category List</h1>
+        <main>
+          {categories.map((cate) => (
+            <div key={cate.id} className="post">
+              <Link className="content" href={`/category/${cate.id}`}>
+                {cate.name}
+              </Link>
             </div>
-            <style jsx>{`
+          ))}
+        </main>
+      </div>
+      <style>
+        {`
                 .post {
                   background: white;
                   transition: box-shadow 0.1s ease-in;
@@ -61,17 +56,18 @@ export default function CategoryPage({ categories }: Prop) {
                     align-items: center;
                 }
 
-              `}</style>
-        </Layout>
+              `}
 
-    )
+      </style>
+    </Layout>
+
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const res = await fetch('http://localhost:3001/category')
-    const categories = await res.json()
-    return {
-        props: { categories },
-    }
-}
-
+  const res = await fetch('http://localhost:3001/api/category/category');
+  const categories = await res.json();
+  return {
+    props: { categories },
+  };
+};

@@ -1,41 +1,42 @@
-import React, { useState } from 'react'
-import Router from 'next/router'
-import Layout from '../components/Layout'
+import React, { useState } from 'react';
+import Router from 'next/router';
+import Link from 'next/link';
+import Layout from '../components/Layout';
 
-const SignUp: React.FC = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+export default function SignUp() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
   const submitData = async (e: React.SyntheticEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const body = { name, email }
-      await fetch(`http://localhost:3001/user`, {
+      const body = { name, email };
+      await fetch('http://localhost:3001/user', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
-      })
-      await Router.push('/')
+      });
+      await Router.push('/');
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <Layout>
       <div className="page">
         <form
-          onSubmit={submitData}>
+          onSubmit={submitData}
+        >
           <h1>Signup user</h1>
           <input
-            autoFocus
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             placeholder="Name"
             type="text"
             value={name}
           />
           <input
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Email address"
             type="text"
             value={email}
@@ -45,12 +46,13 @@ const SignUp: React.FC = () => {
             type="submit"
             value="Signup"
           />
-          <a className="back" href="#" onClick={() => Router.push('/')}>
+          <Link className="back" href="/">
             or Cancel
-          </a>
+          </Link>
         </form>
       </div>
-      <style jsx>{`
+      <style>
+        {`
       .page {
         background: white;
         padding: 3rem;
@@ -75,9 +77,8 @@ const SignUp: React.FC = () => {
       .back {
         margin-left: 1rem;
       }
-    `}</style>
+    `}
+      </style>
     </Layout>
-  )
+  );
 }
-
-export default SignUp

@@ -1,25 +1,25 @@
-import React from 'react'
-import { GetServerSideProps } from 'next'
-import ReactMarkdown from 'react-markdown'
-import Layout from '../../components/Layout'
-import Router from 'next/router'
-import { PostProps } from '../../components/Post'
-
+import React from 'react';
+import { GetServerSideProps } from 'next';
+import Layout from '../../components/Layout';
 
 type UserProp = {
-    id: number,
-    name: string,
-    email: string,
-}
+  id: number,
+  name: string,
+  email: string,
+};
 
-const Post: React.FC<UserProp> = user => {
-    return (
-        <Layout>
-            <div>
-                <h2>{user.name}</h2>
-                <small>By {user.email}</small>
-            </div>
-            <style jsx>{`
+export default function UserProfile({ id, name, email } :UserProp) {
+  return (
+    <Layout>
+      <div>
+        <h2>{`name is ${name} id is ${id}`}</h2>
+        <small>
+          By
+          {email}
+        </small>
+      </div>
+      <style>
+        {`
         .page {
           background: white;
           padding: 2rem;
@@ -36,15 +36,14 @@ const Post: React.FC<UserProp> = user => {
         button + button {
           margin-left: 1rem;
         }
-      `}</style>
-        </Layout>
-    )
+      `}
+      </style>
+    </Layout>
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const res = await fetch(`http://localhost:3001/user/${context.params.id}`)
-    const data = await res.json()
-    return { props: { ...data } }
-}
-
-export default Post
+  const res = await fetch(`http://localhost:3001/api/user/user/${context.params.id}`);
+  const data: UserProp = await res.json();
+  return { props: { ...data } };
+};

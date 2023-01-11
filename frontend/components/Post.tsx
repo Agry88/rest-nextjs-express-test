@@ -1,6 +1,6 @@
-import React from 'react'
-import Router from 'next/router'
-import ReactMarkdown from 'react-markdown'
+import React from 'react';
+import Router from 'next/router';
+import ReactMarkdown from 'react-markdown';
 
 export type PostProps = {
   id: number;
@@ -10,23 +10,39 @@ export type PostProps = {
   }
   content: string;
   published: boolean;
-}
+};
 
-const Post: React.FC<{post: PostProps}> = ({ post }) => {
-  const authorName = post.author ? post.author.name : 'Unknown author'
+export default function PostItem({
+  post: {
+    id, author, title, content,
+  },
+} : { post: PostProps }) {
+  const authorName = author ? author.name : 'Unknown author';
   return (
-    <div onClick={() => Router.push('/p/[id]', `/p/${post.id}`)}>
-        <h2>{post.title}</h2>
-        <small>By {authorName}</small>
-        <ReactMarkdown children={post.content} />
-        <style jsx>{`
-          div {
-            color: inherit;
-            padding: 2rem;
-          }
-        `}</style>
+    <div style={{
+      color: 'inherit',
+      padding: '2rem',
+    }}
+    >
+      <button
+        style={{
+          background: 'transparent',
+          width: '100%',
+          height: '100%',
+        }}
+        type="button"
+        onClick={() => Router.push('/p/[id]', `/p/${id}`)}
+      >
+        <h2>{title}</h2>
+        <small>
+          By
+          {' '}
+          {authorName}
+        </small>
+        <ReactMarkdown>
+          {content}
+        </ReactMarkdown>
+      </button>
     </div>
-  )
+  );
 }
-
-export default Post

@@ -1,33 +1,33 @@
-import Layout from "../../components/Layout"
-import { GetServerSideProps } from "next"
-import User from "../../components/User"
+import React from 'react';
+import { GetServerSideProps } from 'next';
+import Layout from '../../components/Layout';
+import UserItem from '../../components/UserItem';
 
-type user = {
-    id: number,
-    name: string,
-    email: string,
-}
+type User = {
+  id: number,
+  name: string,
+  email: string,
+};
 
 type Prop = {
-    users: user[]
-}
+  users: User[]
+};
 
 export default function UserPage({ users }: Prop) {
-
-    return (
-
-        <Layout>
-            <div className="page">
-                <h1>User List</h1>
-                <main>
-                    {users?.map((user, index) => (
-                        <div key={user.id} className="post">
-                            <User user={user} />
-                        </div>
-                    ))}
-                </main>
+  return (
+    <Layout>
+      <div className="page">
+        <h1>User List</h1>
+        <main>
+          {users.map((user) => (
+            <div key={user.id} className="post">
+              <UserItem user={user} />
             </div>
-            <style jsx>{`
+          ))}
+        </main>
+      </div>
+      <style>
+        {`
                 .post {
                   background: white;
                   transition: box-shadow 0.1s ease-in;
@@ -40,17 +40,17 @@ export default function UserPage({ users }: Prop) {
                 .post + .post {
                   margin-top: 2rem;
                 }
-              `}</style>
-        </Layout>
+              `}
 
-    )
+      </style>
+    </Layout>
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const res = await fetch('http://localhost:3001/user')
-    const users = await res.json()
-    return {
-        props: { users },
-    }
-}
-
+  const res = await fetch('http://localhost:3001/api/user/user');
+  const users = await res.json();
+  return {
+    props: { users },
+  };
+};

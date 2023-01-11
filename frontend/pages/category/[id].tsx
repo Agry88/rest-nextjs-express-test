@@ -1,45 +1,59 @@
-import { useRouter } from "next/router"
-import Layout from "../../components/Layout"
-import { GetServerSideProps } from "next"
+import React from 'react';
+import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next';
+import Layout from '../../components/Layout';
 
-type categorysPostData = {
-    id: number,
-    title: string,
-    content: string,
-    authorId: number,
-}
+type CategorysPostData = {
+  id: number,
+  title: string,
+  content: string,
+  authorId: number,
+};
 
 type Prop = {
-    categorysPostData: categorysPostData[]
-}
+  categorysPostData: CategorysPostData[]
+};
 
 export default function CategoryPage({ categorysPostData }: Prop) {
-    const router = useRouter()
+  const router = useRouter();
 
-    const handleDeleteCategory = async () => {
-        const res = await fetch(`http://localhost:3001/category/${router.query.id}`, {
-            method: 'DELETE',
-        })
-        router.push('/category')
-    }
+  const handleDeleteCategory = async () => {
+    await fetch(`http://localhost:3001/api/category/category/${router.query.id}`, {
+      method: 'DELETE',
+    });
+    router.push('/category');
+  };
 
-    return (
+  return (
 
-        <Layout>
-            <div className="page">
-                <h1>Category List</h1>
-                <main>
-                    {categorysPostData.map((post, index) => (
-                        <div key={post.id} className="post">
-                            <button onClick={() => handleDeleteCategory()}>Delete</button>
-                            <div>Title is : {post.title}</div>
-                            <div>Content is : {post.content}</div>
-                            <div>authorId is : {post.authorId}</div>
-                        </div>
-                    ))}
-                </main>
+    <Layout>
+      <div className="page">
+        <h1>Category List</h1>
+        <main>
+          {categorysPostData.map((post) => (
+            <div key={post.id} className="post">
+              <button type="button" onClick={() => handleDeleteCategory()}>Delete</button>
+              <div>
+                Title is :
+                {' '}
+                {post.title}
+              </div>
+              <div>
+                Content is :
+                {' '}
+                {post.content}
+              </div>
+              <div>
+                authorId is :
+                {' '}
+                {post.authorId}
+              </div>
             </div>
-            <style jsx>{`
+          ))}
+        </main>
+      </div>
+      <style>
+        {`
                 .post {
                   background: white;
                   transition: box-shadow 0.1s ease-in;
@@ -52,17 +66,18 @@ export default function CategoryPage({ categorysPostData }: Prop) {
                 .post + .post {
                   margin-top: 2rem;
                 }
-              `}</style>
-        </Layout>
+              `}
 
-    )
+      </style>
+    </Layout>
+
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const res = await fetch(`http://localhost:3001/category/${context.params.id}`)
-    const categorysPostData = await res.json()
-    return {
-        props: { categorysPostData },
-    }
-}
-
+  const res = await fetch(`http://localhost:3001/api/category/category/${context.params.id}`);
+  const categorysPostData = await res.json();
+  return {
+    props: { categorysPostData },
+  };
+};
