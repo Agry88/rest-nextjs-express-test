@@ -21,7 +21,5 @@ app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // Server Run Success info
 app.listen(ctx.config.port, () => {
-  console.info(
-    `🚀 Server ready at: http://localhost:${ctx.config.port}`
-  )
+  console.info(`🚀 Server ready at: http://localhost:${ctx.config.port}`)
 })

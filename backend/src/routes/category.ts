@@ -63,7 +63,7 @@ export default (ctx: Ctx, app: Express): expressRouter => {
       }
     })
 
-    if (rawPost === null) return res.status(404).json({ message: 'category not found' })
+    if (rawPost === null) { return res.status(404).json({ message: 'category not found' }) }
 
     const posts = rawPost.posts.map((post) => post.Post)
 

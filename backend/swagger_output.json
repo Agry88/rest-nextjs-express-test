@@ -25,15 +25,11 @@
       "description": "test router"
     }
   ],
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/category/category/{id}": {
       "delete": {
-        "tags": [
-          "category"
-        ],
+        "tags": ["category"],
         "description": "",
         "parameters": [
           {
@@ -53,9 +49,7 @@
         }
       },
       "get": {
-        "tags": [
-          "category"
-        ],
+        "tags": ["category"],
         "description": "",
         "parameters": [
           {
@@ -77,9 +71,7 @@
     },
     "/category/category": {
       "get": {
-        "tags": [
-          "category"
-        ],
+        "tags": ["category"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -91,9 +83,7 @@
     },
     "/user/user": {
       "post": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "description": "",
         "parameters": [
           {
@@ -119,9 +109,7 @@
         }
       },
       "get": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -133,9 +121,7 @@
     },
     "/user/user/{id}": {
       "get": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "description": "",
         "parameters": [
           {
@@ -154,9 +140,7 @@
     },
     "/post/drafts": {
       "get": {
-        "tags": [
-          "post"
-        ],
+        "tags": ["post"],
         "summary": "Get all drafts",
         "description": "Some description...",
         "operationId": "Your_operationId_here",
@@ -170,9 +154,7 @@
     },
     "/post/feed": {
       "get": {
-        "tags": [
-          "post"
-        ],
+        "tags": ["post"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -184,9 +166,7 @@
     },
     "/post/filterPosts": {
       "get": {
-        "tags": [
-          "post"
-        ],
+        "tags": ["post"],
         "description": "",
         "parameters": [
           {
@@ -204,9 +184,7 @@
     },
     "/post/post": {
       "post": {
-        "tags": [
-          "post"
-        ],
+        "tags": ["post"],
         "description": "",
         "parameters": [
           {
@@ -233,12 +211,7 @@
                   "example": "catid here"
                 }
               },
-              "required": [
-                "title",
-                "content",
-                "authorEmail",
-                "catergoryId"
-              ]
+              "required": ["title", "content", "authorEmail", "catergoryId"]
             }
           }
         ],
@@ -251,9 +224,7 @@
     },
     "/post/post/{id}": {
       "delete": {
-        "tags": [
-          "post"
-        ],
+        "tags": ["post"],
         "description": "",
         "parameters": [
           {
@@ -273,9 +244,7 @@
         }
       },
       "get": {
-        "tags": [
-          "post"
-        ],
+        "tags": ["post"],
         "description": "",
         "parameters": [
           {
@@ -294,9 +263,7 @@
     },
     "/post/publish/{id}": {
       "put": {
-        "tags": [
-          "post"
-        ],
+        "tags": ["post"],
         "description": "",
         "parameters": [
           {

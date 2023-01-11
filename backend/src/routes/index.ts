@@ -8,13 +8,19 @@ export default (ctx: Ctx, app: Express): Router => {
   const router = Router()
 
   // Map Routes
-  router.use('/category', categoryRouter(ctx, app)
+  router.use(
+    '/category',
+    categoryRouter(ctx, app)
     // #swagger.tags = ['category']
   )
-  router.use('/user', userRouter(ctx, app)
+  router.use(
+    '/user',
+    userRouter(ctx, app)
     // #swagger.tags = ['user']
   )
-  router.use('/post', postRouter(ctx, app)
+  router.use(
+    '/post',
+    postRouter(ctx, app)
     // #swagger.tags = ['post']
   )
 
