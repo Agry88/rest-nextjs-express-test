@@ -48,7 +48,7 @@ export default function UserPage({ users }: Prop) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch('http://localhost:3001/api/user/user');
+  const res = await fetch('http://localhost:3001/api/user');
   const users = await res.json();
   return {
     props: { users },

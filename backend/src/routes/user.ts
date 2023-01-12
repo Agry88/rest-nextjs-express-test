@@ -5,7 +5,7 @@ export default (ctx: Ctx, app: Express): expressRouter => {
   const router = expressRouter()
   const { prisma } = ctx
 
-  router.post('/user', async (req, res) => {
+  router.post('/', async (req, res) => {
     const { email } = req.body
     const user = await prisma.user.findUnique({
       where: {
@@ -26,12 +26,12 @@ export default (ctx: Ctx, app: Express): expressRouter => {
     return res.json(result)
   })
 
-  router.get('/user', async (req, res) => {
+  router.get('/', async (req, res) => {
     const result = await prisma.user.findMany()
     return res.status(200).json(result)
   })
 
-  router.get('/user/:id', async (req, res) => {
+  router.get('/:id', async (req, res) => {
     const { id } = req.params
     const user = await prisma.user.findUnique({
       where: {

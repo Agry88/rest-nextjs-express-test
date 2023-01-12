@@ -45,7 +45,7 @@ export default (ctx: Ctx, app: Express): expressRouter => {
     res.json(filteredPosts)
   })
 
-  router.post('/post', async (req, res) => {
+  router.post('/', async (req, res) => {
     /* #swagger.parameters['body'] = {
       in: 'body',
       description: 'Some description...',
@@ -73,7 +73,7 @@ export default (ctx: Ctx, app: Express): expressRouter => {
     res.json(result)
   })
 
-  router.delete('/post/:id', async (req, res) => {
+  router.delete('/:id', async (req, res) => {
     const { id } = req.params
 
     const prepost = await prisma.post.findUnique({
@@ -102,7 +102,7 @@ export default (ctx: Ctx, app: Express): expressRouter => {
     res.status(200).send('Post deleted successfully')
   })
 
-  router.get('/post/:id', async (req, res) => {
+  router.get('/:id', async (req, res) => {
     const { id } = req.params
     const post = await prisma.post.findUnique({
       where: {

@@ -43,7 +43,7 @@ export default function UserProfile({ id, name, email } :UserProp) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`http://localhost:3001/api/user/user/${context.params.id}`);
+  const res = await fetch(`http://localhost:3001/api/user/${context.params.id}`);
   const data: UserProp = await res.json();
   return { props: { ...data } };
 };

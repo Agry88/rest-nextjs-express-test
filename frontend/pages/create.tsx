@@ -15,7 +15,7 @@ export default function Draft() {
       const body = {
         title, content, authorEmail, catergoryId,
       };
-      await fetch('http://localhost:3001/api/post/post', {
+      await fetch('http://localhost:3001/api/post', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),

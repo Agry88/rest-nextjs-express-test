@@ -6,7 +6,7 @@ const router = expressRouter()
 export default (ctx: Ctx, app: Express): expressRouter => {
   const { prisma } = ctx
 
-  router.delete('/category/:id', async (req, res) => {
+  router.delete('/:id', async (req, res) => {
     const { id } = req.params
 
     const preCategory = await prisma.catergory.findUnique({
@@ -35,12 +35,12 @@ export default (ctx: Ctx, app: Express): expressRouter => {
     res.status(200).send('Category deleted successfully')
   })
 
-  router.get('/category', async (req, res) => {
+  router.get('/', async (req, res) => {
     const result = await prisma.catergory.findMany()
     return res.status(200).json(result)
   })
 
-  router.get('/category/:id', async (req, res) => {
+  router.get('/:id', async (req, res) => {
     const { id } = req.params
 
     const rawPost = await prisma.catergory.findUnique({

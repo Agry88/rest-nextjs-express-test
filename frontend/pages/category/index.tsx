@@ -65,7 +65,7 @@ export default function CategoryPage({ categories }: Prop) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch('http://localhost:3001/api/category/category');
+  const res = await fetch('http://localhost:3001/api/category');
   const categories = await res.json();
   return {
     props: { categories },

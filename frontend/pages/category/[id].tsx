@@ -18,7 +18,7 @@ export default function CategoryPage({ categorysPostData }: Prop) {
   const router = useRouter();
 
   const handleDeleteCategory = async () => {
-    await fetch(`http://localhost:3001/api/category/category/${router.query.id}`, {
+    await fetch(`http://localhost:3001/api/category/${router.query.id}`, {
       method: 'DELETE',
     });
     router.push('/category');
@@ -75,7 +75,7 @@ export default function CategoryPage({ categorysPostData }: Prop) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`http://localhost:3001/api/category/category/${context.params.id}`);
+  const res = await fetch(`http://localhost:3001/api/category/${context.params.id}`);
   const categorysPostData = await res.json();
   return {
     props: { categorysPostData },

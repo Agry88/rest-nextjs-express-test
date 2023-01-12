@@ -75,7 +75,7 @@ export default function Post(props: PostProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`http://localhost:3001/api/post/post/${context.params.id}`);
+  const res = await fetch(`http://localhost:3001/api/post/${context.params.id}`);
   const data = await res.json();
   return { props: { ...data } };
 };
