@@ -1,7 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
-import Layout from '../../components/Layout';
+import Layout from '../../components/layouts/layout';
+import CategoryPostContainer from '../../components/pages-component/category/[id]';
 
 type CategorysPostData = {
   id: number,
@@ -31,7 +32,7 @@ export default function CategoryPage({ categorysPostData }: Prop) {
         <h1>Category List</h1>
         <main>
           {categorysPostData.map((post) => (
-            <div key={post.id} className="post">
+            <CategoryPostContainer key={post.id}>
               <button type="button" onClick={() => handleDeleteCategory()}>Delete</button>
               <div>
                 Title is :
@@ -48,27 +49,10 @@ export default function CategoryPage({ categorysPostData }: Prop) {
                 {' '}
                 {post.authorId}
               </div>
-            </div>
+            </CategoryPostContainer>
           ))}
         </main>
       </div>
-      <style>
-        {`
-                .post {
-                  background: white;
-                  transition: box-shadow 0.1s ease-in;
-                }
-        
-                .post:hover {
-                  box-shadow: 1px 1px 3px #aaa;
-                }
-        
-                .post + .post {
-                  margin-top: 2rem;
-                }
-              `}
-
-      </style>
     </Layout>
 
   );

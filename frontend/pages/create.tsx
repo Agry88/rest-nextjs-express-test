@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Router from 'next/router';
-import Link from 'next/link';
-import Layout from '../components/Layout';
+import Layout from '../components/layouts/layout';
+import TextInput from '../components/shared-component/textinput/textinput1';
+import TextArea from '../components/shared-component/textinput/textarea1';
+import SubmitButton from '../components/shared-component/button/background-button';
+import BackButton from '../components/shared-component/button/back-button';
 
 export default function Draft() {
   const [title, setTitle] = useState('');
@@ -33,72 +36,42 @@ export default function Draft() {
           onSubmit={submitData}
         >
           <h1>Create Draft</h1>
-          <input
+          <TextInput
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Title"
             type="text"
             value={title}
           />
-          <input
+          <TextInput
             onChange={(e) => setAuthorEmail(e.target.value)}
             placeholder="Author (email address)"
             type="text"
             value={authorEmail}
           />
-          <input
+          <TextInput
             onChange={(e) => setCatergoryId(e.target.value)}
             placeholder="catergoryId"
             type="text"
             value={catergoryId}
           />
-          <textarea
+          <TextArea
             cols={50}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Content"
             rows={8}
             value={content}
           />
-          <input
+          <SubmitButton
             disabled={!content || !title || !authorEmail || !catergoryId}
             type="submit"
-            value="Create"
-          />
-          <Link className="href" href="/">
+          >
+            Create
+          </SubmitButton>
+          <BackButton href="/">
             or Cancel
-          </Link>
+          </BackButton>
         </form>
       </div>
-      <style>
-        {`
-        .page {
-          background: white;
-          padding: 3rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        input[type='text'],
-        textarea {
-          width: 100%;
-          padding: 0.5rem;
-          margin: 0.5rem 0;
-          border-radius: 0.25rem;
-          border: 0.125rem solid rgba(0, 0, 0, 0.2);
-        }
-
-        input[type='submit'] {
-          background: #ececec;
-          border: 0;
-          padding: 1rem 2rem;
-        }
-
-        .back {
-          margin-left: 1rem;
-        }
-      `}
-
-      </style>
     </Layout>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import Layout from '../components/Layout';
-import Post, { PostProps } from '../components/Post';
+import Layout from '../components/layouts/layout';
+import Post, { PostProps } from '../components/shared-component/post/post-card';
 
 type Props = {
   drafts: PostProps[]
@@ -10,33 +10,14 @@ type Props = {
 export default function Drafts({ drafts }: Props) {
   return (
     <Layout>
-      <div className="page">
+      <div>
         <h1>Drafts</h1>
         <main>
           {drafts.map((post) => (
-            <div key={post.id} className="post">
-              <Post post={post} />
-            </div>
+            <Post key={post.id} post={post} />
           ))}
         </main>
       </div>
-      <style>
-        {`
-        .post {
-          background: white;
-          transition: box-shadow 0.1s ease-in;
-        }
-
-        .post:hover {
-          box-shadow: 1px 1px 3px #aaa;
-        }
-
-        .post + .post {
-          margin-top: 2rem;
-        }
-      `}
-
-      </style>
     </Layout>
   );
 }

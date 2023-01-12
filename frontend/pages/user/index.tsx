@@ -1,7 +1,8 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import Layout from '../../components/Layout';
-import UserItem from '../../components/UserItem';
+import Layout from '../../components/layouts/layout';
+import UserItem from '../../components/shared-component/user/user-item';
+import UserItemContainer from '../../components/pages-component/user';
 
 type User = {
   id: number,
@@ -20,29 +21,12 @@ export default function UserPage({ users }: Prop) {
         <h1>User List</h1>
         <main>
           {users.map((user) => (
-            <div key={user.id} className="post">
+            <UserItemContainer key={user.id} className="post">
               <UserItem user={user} />
-            </div>
+            </UserItemContainer>
           ))}
         </main>
       </div>
-      <style>
-        {`
-                .post {
-                  background: white;
-                  transition: box-shadow 0.1s ease-in;
-                }
-        
-                .post:hover {
-                  box-shadow: 1px 1px 3px #aaa;
-                }
-        
-                .post + .post {
-                  margin-top: 2rem;
-                }
-              `}
-
-      </style>
     </Layout>
   );
 }

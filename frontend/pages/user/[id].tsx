@@ -1,6 +1,7 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import Layout from '../../components/Layout';
+import Layout from '../../components/layouts/layout';
+import Container from '../../components/pages-component/user/[id]';
 
 type UserProp = {
   id: number,
@@ -11,33 +12,13 @@ type UserProp = {
 export default function UserProfile({ id, name, email } :UserProp) {
   return (
     <Layout>
-      <div>
+      <Container>
         <h2>{`name is ${name} id is ${id}`}</h2>
         <small>
           By
           {email}
         </small>
-      </div>
-      <style>
-        {`
-        .page {
-          background: white;
-          padding: 2rem;
-        }
-        .actions {
-          margin-top: 2rem;
-        }
-        button {
-          background: #ececec;
-          border: 0;
-          border-radius: 0.125rem;
-          padding: 1rem 2rem;
-        }
-        button + button {
-          margin-left: 1rem;
-        }
-      `}
-      </style>
+      </Container>
     </Layout>
   );
 }

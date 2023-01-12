@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Router from 'next/router';
-import Link from 'next/link';
-import Layout from '../components/Layout';
+import Layout from '../components/layouts/layout';
+import TextInput from '../components/shared-component/textinput/textinput1';
+import SubmitButton from '../components/shared-component/button/background-button';
+import BackButton from '../components/shared-component/button/back-button';
 
 export default function SignUp() {
   const [name, setName] = useState('');
@@ -24,61 +26,34 @@ export default function SignUp() {
 
   return (
     <Layout>
-      <div className="page">
+      <div>
         <form
           onSubmit={submitData}
         >
           <h1>Signup user</h1>
-          <input
+          <TextInput
             onChange={(e) => setName(e.target.value)}
             placeholder="Name"
             type="text"
             value={name}
           />
-          <input
+          <TextInput
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email address"
             type="text"
             value={email}
           />
-          <input
+          <SubmitButton
             disabled={!name || !email}
             type="submit"
-            value="Signup"
-          />
-          <Link className="back" href="/">
+          >
+            Signup
+          </SubmitButton>
+          <BackButton href="/">
             or Cancel
-          </Link>
+          </BackButton>
         </form>
       </div>
-      <style>
-        {`
-      .page {
-        background: white;
-        padding: 3rem;
-        display: flex;
-        justify-content: center;
-      }
-
-      input[type='text'] {
-        width: 100%;
-        padding: 0.5rem;
-        margin: 0.5rem 0;
-        border-radius: 0.25rem;
-        border: 0.125rem solid rgba(0, 0, 0, 0.2);
-      }
-
-      input[type='submit'] {
-        background: #ececec;
-        border: 0;
-        padding: 1rem 2rem;
-      }
-
-      .back {
-        margin-left: 1rem;
-      }
-    `}
-      </style>
     </Layout>
   );
 }

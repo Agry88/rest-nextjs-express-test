@@ -2,8 +2,10 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import ReactMarkdown from 'react-markdown';
 import Router from 'next/router';
-import Layout from '../../components/Layout';
-import { PostProps } from '../../components/Post';
+import Layout from '../../components/layouts/layout';
+import { PostProps } from '../../components/shared-component/post/post-card';
+import BackgroundButton from '../../components/shared-component/button/background-button';
+import Container from '../../components/pages-component/p/[id]';
 
 async function publish(id: number): Promise<void> {
   await fetch(`http://localhost:3001/publish/${id}`, {
@@ -30,7 +32,7 @@ export default function Post(props: PostProps) {
 
   return (
     <Layout>
-      <div>
+      <Container>
         <h2>{title}</h2>
         <p>
           By
@@ -41,35 +43,20 @@ export default function Post(props: PostProps) {
           {content}
         </ReactMarkdown>
         {!published && (
-        <button type="button" onClick={() => publish(id)}>
+        <BackgroundButton
+          type="button"
+          onClick={() => publish(id)}
+        >
           Publish
-        </button>
+        </BackgroundButton>
         )}
-        <button type="button" onClick={() => destroy(id)}>
+        <BackgroundButton
+          type="button"
+          onClick={() => destroy(id)}
+        >
           Delete
-        </button>
-      </div>
-      <style>
-        {`
-        .page {
-          background: white;
-          padding: 2rem;
-        }
-        .actions {
-          margin-top: 2rem;
-        }
-        button {
-          background: #ececec;
-          border: 0;
-          border-radius: 0.125rem;
-          padding: 1rem 2rem;
-        }
-        button + button {
-          margin-left: 1rem;
-        }
-      `}
-
-      </style>
+        </BackgroundButton>
+      </Container>
     </Layout>
   );
 }
