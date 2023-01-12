@@ -26,7 +26,7 @@ const CategoryPostItem = styled(Link)`
   align-items: center;
 `;
 
-type Props = {
+export type Props = {
   href: string;
   name: string;
 };
