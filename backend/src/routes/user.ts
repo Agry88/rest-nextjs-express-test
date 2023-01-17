@@ -38,7 +38,10 @@ export default (ctx: Ctx, app: Express): expressRouter => {
         id: Number(id)
       }
     })
-    res.json(user)
+    if (user === null) {
+      return res.status(404).json({ message: 'user not found' })
+    }
+    return res.json(user)
   })
 
   return router
