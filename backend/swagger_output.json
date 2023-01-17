@@ -159,6 +159,7 @@
         ],
         "summary": "取得所有的未公開Post",
         "description": "無需輸入body跟header來取得所有的未公開Post",
+        "operationId": "getPostswithoutPublished",
         "parameters": [],
         "responses": {
           "200": {
@@ -206,10 +207,12 @@
         "tags": [
           "post"
         ],
-        "description": "",
+        "summary": "新增Post",
+        "description": "利用body裡的資訊新增Post",
+        "operationId": "createPost",
         "parameters": [
           {
-            "name": "body",
+            "name": "PostBody",
             "in": "body",
             "description": "Body 需要以下欄位",
             "schema": {
@@ -225,11 +228,11 @@
                 },
                 "authorEmail": {
                   "type": "string",
-                  "example": "作者的email"
+                  "example": "AgryEmail"
                 },
                 "catergoryId": {
                   "type": "string",
-                  "example": "文章的分類id"
+                  "example": "2"
                 }
               },
               "required": [
@@ -243,7 +246,37 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "成功創建Post",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "新的文章標題"
+                },
+                "content": {
+                  "type": "string",
+                  "example": "新的文章內容"
+                },
+                "authorEmail": {
+                  "type": "string",
+                  "example": "AgryEmail"
+                },
+                "catergoryId": {
+                  "type": "string",
+                  "example": "2"
+                }
+              },
+              "required": [
+                "title",
+                "content",
+                "authorEmail",
+                "catergoryId"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }

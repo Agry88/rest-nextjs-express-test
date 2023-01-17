@@ -8,6 +8,7 @@ export default (ctx: Ctx, app: Express): expressRouter => {
   router.get('/drafts', async (req, res) => {
     // #swagger.summary = '取得所有的未公開Post'
     // #swagger.description = '無需輸入body跟header來取得所有的未公開Post'
+    // #swagger.operationId = 'getPostswithoutPublished'
     const posts = await prisma.post.findMany({
       where: { published: false },
       include: { author: true }
@@ -45,15 +46,27 @@ export default (ctx: Ctx, app: Express): expressRouter => {
   })
 
   router.post('/', async (req, res) => {
-    /* #swagger.parameters['body'] = {
+    // #swagger.summary = '新增Post'
+    // #swagger.description = '利用body裡的資訊新增Post'
+    // #swagger.operationId = 'createPost'
+    /* #swagger.parameters['PostBody'] = {
       in: 'body',
       description: 'Body 需要以下欄位',
       schema: {
         $title: '新的文章標題',
         $content: '新的文章內容',
-        $authorEmail: '作者的email',
-        $catergoryId: '文章的分類id'
+        $authorEmail: 'AgryEmail',
+        $catergoryId: '2'
       }
+    } */
+    /* #swagger.responses[200] = {
+            description: '成功創建Post',
+            schema: {
+              $title: '新的文章標題',
+              $content: '新的文章內容',
+              $authorEmail: 'AgryEmail',
+              $catergoryId: '2'
+            }
     } */
     const { title, content, authorEmail, catergoryId } = req.body
     const result = await prisma.post.create({
