@@ -1,20 +1,29 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import Layout from '../components/layouts/layout';
-import Post, { PostProps } from '../components/shared-component/post/post-card';
+import UserItem from '../components/shared-component/user/user-item';
+import UserItemContainer from '../components/pages-component/user';
 
-type Props = {
-  feed: PostProps[]
+type User = {
+  id: number,
+  name: string,
+  email: string,
 };
 
-export default function Blog({ feed }: Props) {
+type Prop = {
+  users: User[]
+};
+
+export default function UserPage({ users }: Prop) {
   return (
     <Layout>
-      <div>
-        <h1>My Blog</h1>
+      <div className="page">
+        <h1>User List</h1>
         <main>
-          {feed.map((post) => (
-            <Post post={post} key={post.id} />
+          {users.map((user) => (
+            <UserItemContainer key={user.id} className="post">
+              <UserItem user={user} />
+            </UserItemContainer>
           ))}
         </main>
       </div>
@@ -23,9 +32,9 @@ export default function Blog({ feed }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch('http://localhost:3001/api/post/feed');
-  const feed = await res.json();
+  const res = await fetch('http://localhost:3001/api/user');
+  const users = await res.json();
   return {
-    props: { feed },
+    props: { users },
   };
 };
