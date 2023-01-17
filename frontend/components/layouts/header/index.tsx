@@ -42,9 +42,6 @@ export default function Header() {
     >
       <div className="left">
         <CustomLink href="/">Home</CustomLink>
-        <CustomLink href="/drafts">Drafts</CustomLink>
-        <CustomLink href="/user">User</CustomLink>
-        <CustomLink href="/category">Category</CustomLink>
       </div>
 
       <div
@@ -61,17 +58,6 @@ export default function Header() {
           href="/signup"
         >
           SignUp
-
-        </CustomLink>
-        <CustomLink
-          style={{
-            border: '1px solid black',
-            padding: '0.5rem 1rem',
-            borderRadius: '3px',
-          }}
-          href="/create"
-        >
-          + Create draft
 
         </CustomLink>
       </div>
