@@ -25,11 +25,15 @@
       "description": "test router"
     }
   ],
-  "schemes": ["http"],
+  "schemes": [
+    "http"
+  ],
   "paths": {
-    "/category/category/{id}": {
+    "/category/{id}": {
       "delete": {
-        "tags": ["category"],
+        "tags": [
+          "category"
+        ],
         "description": "",
         "parameters": [
           {
@@ -49,7 +53,9 @@
         }
       },
       "get": {
-        "tags": ["category"],
+        "tags": [
+          "category"
+        ],
         "description": "",
         "parameters": [
           {
@@ -69,9 +75,11 @@
         }
       }
     },
-    "/category/category": {
+    "/category/": {
       "get": {
-        "tags": ["category"],
+        "tags": [
+          "category"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -81,9 +89,11 @@
         }
       }
     },
-    "/user/user": {
+    "/user/": {
       "post": {
-        "tags": ["user"],
+        "tags": [
+          "user"
+        ],
         "description": "",
         "parameters": [
           {
@@ -109,7 +119,9 @@
         }
       },
       "get": {
-        "tags": ["user"],
+        "tags": [
+          "user"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -119,9 +131,11 @@
         }
       }
     },
-    "/user/user/{id}": {
+    "/user/{id}": {
       "get": {
-        "tags": ["user"],
+        "tags": [
+          "user"
+        ],
         "description": "",
         "parameters": [
           {
@@ -140,10 +154,11 @@
     },
     "/post/drafts": {
       "get": {
-        "tags": ["post"],
-        "summary": "Get all drafts",
-        "description": "Some description...",
-        "operationId": "Your_operationId_here",
+        "tags": [
+          "post"
+        ],
+        "summary": "取得所有的未公開Post",
+        "description": "無需輸入body跟header來取得所有的未公開Post",
         "parameters": [],
         "responses": {
           "200": {
@@ -154,7 +169,9 @@
     },
     "/post/feed": {
       "get": {
-        "tags": ["post"],
+        "tags": [
+          "post"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -166,7 +183,9 @@
     },
     "/post/filterPosts": {
       "get": {
-        "tags": ["post"],
+        "tags": [
+          "post"
+        ],
         "description": "",
         "parameters": [
           {
@@ -182,36 +201,43 @@
         }
       }
     },
-    "/post/post": {
+    "/post/": {
       "post": {
-        "tags": ["post"],
+        "tags": [
+          "post"
+        ],
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
-            "description": "Some description...",
+            "description": "Body 需要以下欄位",
             "schema": {
               "type": "object",
               "properties": {
                 "title": {
                   "type": "string",
-                  "example": "title here"
+                  "example": "新的文章標題"
                 },
                 "content": {
                   "type": "string",
-                  "example": "content here"
+                  "example": "新的文章內容"
                 },
                 "authorEmail": {
                   "type": "string",
-                  "example": "email here"
+                  "example": "作者的email"
                 },
                 "catergoryId": {
                   "type": "string",
-                  "example": "catid here"
+                  "example": "文章的分類id"
                 }
               },
-              "required": ["title", "content", "authorEmail", "catergoryId"]
+              "required": [
+                "title",
+                "content",
+                "authorEmail",
+                "catergoryId"
+              ]
             }
           }
         ],
@@ -222,9 +248,11 @@
         }
       }
     },
-    "/post/post/{id}": {
+    "/post/{id}": {
       "delete": {
-        "tags": ["post"],
+        "tags": [
+          "post"
+        ],
         "description": "",
         "parameters": [
           {
@@ -244,7 +272,9 @@
         }
       },
       "get": {
-        "tags": ["post"],
+        "tags": [
+          "post"
+        ],
         "description": "",
         "parameters": [
           {
@@ -263,7 +293,9 @@
     },
     "/post/publish/{id}": {
       "put": {
-        "tags": ["post"],
+        "tags": [
+          "post"
+        ],
         "description": "",
         "parameters": [
           {

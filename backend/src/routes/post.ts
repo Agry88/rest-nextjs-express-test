@@ -6,9 +6,8 @@ export default (ctx: Ctx, app: Express): expressRouter => {
   const { prisma } = ctx
 
   router.get('/drafts', async (req, res) => {
-    // #swagger.summary = 'Get all drafts'
-    // #swagger.description = 'Some description...'
-    // #swagger.operationId = 'Your_operationId_here'
+    // #swagger.summary = '取得所有的未公開Post'
+    // #swagger.description = '無需輸入body跟header來取得所有的未公開Post'
     const posts = await prisma.post.findMany({
       where: { published: false },
       include: { author: true }
@@ -48,12 +47,12 @@ export default (ctx: Ctx, app: Express): expressRouter => {
   router.post('/', async (req, res) => {
     /* #swagger.parameters['body'] = {
       in: 'body',
-      description: 'Some description...',
+      description: 'Body 需要以下欄位',
       schema: {
-        $title: 'title here',
-        $content: 'content here',
-        $authorEmail: 'email here',
-        $catergoryId: 'catid here'
+        $title: '新的文章標題',
+        $content: '新的文章內容',
+        $authorEmail: '作者的email',
+        $catergoryId: '文章的分類id'
       }
     } */
     const { title, content, authorEmail, catergoryId } = req.body
